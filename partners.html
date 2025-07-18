@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Operation Smile Partners</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="img/fevicon.png"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f17cd2, #6a9aee);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    .partner-card {
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .partner-card:hover {
+      transform: scale(1.05);
+    }
+
+    .partner-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .row {
+      align-items: center;
+    }
+
+    .partner-description {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .partner-card {
+        margin-bottom: 20px;
+      }
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .nav-item {
+      padding: 9px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 10px;
+    }
+
+    .navbar.navbar-custom {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(151, 96, 96, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: background 0.3s ease-in-out;
+      padding: 12px 0;
+    }
+
+    .navbar-custom .navbar-nav .nav-link {
+      color: rgb(0, 0, 0) !important;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: larger;
+    }
+
+    .navbar-custom .navbar-nav .nav-link:hover {
+      color: #3e0df0 !important;
+    }
+
+    .mb-4 {
+      margin-top: 150px;
+    }
+
+    .donate {
+      padding: 0.5rem 2.5rem;
+      height: 50px;
+      border: 1px solid black;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      background-image: linear-gradient(to right, rgb(252, 116, 5), rgb(255, 254, 251), rgb(4, 250, 4));
+      color: black;
+      font-weight: bolder;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      position: relative;
+      transition: all 0.9s ease-in-out;
+      text-transform: uppercase;
+    }
+
+    .donate:hover {
+      background-image: linear-gradient(to right, rgb(248, 236, 3), rgb(245, 2, 209), rgb(1, 46, 247));
+      color: white;
+    }
+
+    .donate::before {
+      content: "🙏";
+      position: absolute;
+      left: -0rem;
+      top: 0rem;
+      font-size: 1.55rem;
+      transition: all 0.9s ease-in-out;
+    }
+
+    .donate:hover::before {
+      content: "❤️";
+      transform: rotate(40deg);
+      font-size: 2.5rem;
+      top: -0.75rem;
+      animation: rightRun 2s forwards;
+    }
+
+    .donate:active::before {
+      content: "💝";
+    }
+
+    @keyframes rightRun {
+      100% {
+        transform: translateX(100px);
+      }
+    }
+
+    .volunteer {
+      outline: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #04843b;
+      min-width: 80px;
+      border: 0;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 16px 20px;
+      color: #000000;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      overflow: hidden;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .volunteer:hover {
+      opacity: 0.95;
+    }
+
+    .volunteer .animation {
+      border-radius: 100%;
+      animation: ripple 0.6s linear infinite;
+    }
+
+    @keyframes ripple {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+      }
+
+      100% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+      }
+    }
+
+    .custom-footer {
+      background-color: #1b1f23;
+      color: #ffffff;
+      padding: 60px 0 30px;
+      font-size: 16px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .custom-footer h5 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .custom-footer a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .custom-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .custom-footer .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .custom-footer .col-md-4,
+      .custom-footer .col-md-3 {
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo" />
+    </div>
+    <a class="navbar-brand" href="#">Operation Smile</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="partners.html">Our Partners</a></li>
+        <li class="nav-item"><a class="nav-link" href="initiatives.html">Our Initiatives</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <a href="donate.html"><button class="donate">Donate</button></a>
+    <div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSei2fpCRa2_GZXVfZZdAst9PCeLmhK4gxhIc6ewTaGBo-2vcg/viewform">
+        <button class="volunteer"><i class="animation"></i>Volunteer<i class="animation"></i></button>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+        <h1 class="mb-4">Our Partners</h1>
+        <p class="mb-3">हमारे साझेदार निस्वार्थ सेवा और समर्पण के साथ समाज के उत्थान के लिए कार्यरत हैं।
+            वे करुणा और सहयोग से जरूरतमंदों को सशक्त बनाकर सकारात्मक बदलाव ला रहे हैं।</p>
+        <p class="mb-5">Our partners are dedicated to social upliftment with selfless service and commitment.
+            Through compassion and collaboration, they empower the needy and bring positive change.
+        </p>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="partner-card p-3">
+                    <img src="img/saadhak.png" alt="Saadhak Foundation" class="partner-logo">
+                    <h3>Saadhak Foundation</h3>
+                    <p class="partner-description">स्वस्मै स्वल्पं समाजाय सर्वस्वं।
+                    </p>
+                    <a href="https://www.saadhakfoundation.org/" class="btn btn-primary" target="_blank">Visit Website</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="partner-card p-3">
+                    <img src="img/sevabharti.png" alt="Seva Bharti Foundation" class="partner-logo">
+                    <h3>Seva Bharti Foundation</h3>
+                    <p class="partner-description">सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः।
+                        सर्वे भद्राणि पश्यन्तु, मा कश्चित् दुःखभाग्भवेत्॥</p>
+                    <a href="https://www.sewabhartidelhi.org/" class="btn btn-primary" target="_blank">Visit Website</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="partner-card p-3">
+                    <img src="img/visan.png" alt="Visan Foundation" class="partner-logo">
+                    <h3>Visan Foundation</h3>
+                    <p class="partner-description">Partner Three is a trusted name in digital transformation, providing top-notch IT solutions.</p>
+                    <a href="https://visanfoundation.org/" class="btn btn-primary" target="_blank">Visit Website</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="partner-card p-3">
+                    <img src="img/visan.png" alt="Visan Foundation" class="partner-logo">
+                    <h3>NGO Pehal Ek Jeevan Ki</h3>
+                    <p class="partner-description">भारत की पहली संस्था जो गऊ माता और बेज़ुबान जानवरो का अंतिम संस्कार करती है 🕉️</p>
+                    <a href="https://pehalekjeevanki.com/" class="btn btn-primary" target="_blank">Visit Website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Footer -->
+<footer class="custom-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>About Us</h5>
+        <p>We are dedicated to making a difference through community-driven initiatives and impactful projects.</p>
+      </div>
+      <div class="col-md-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="initiatives.html">Projects</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <h5>Contact Us</h5>
+        <p>Email: <a href="mailto:operationsmile2303@gmail.com">operationsmile2303@gmail.com</a></p>
+        <p>Phone: +91 8595588085</p>
+        <p>Address: A1, DDA Colony, New Jaffrabad, Shahdara, New Delhi, Delhi, 110032</p>
+      </div>
+    </div>
+    <div class="footer-bottom mt-4">&copy; 2025 Operation Smile. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- ✅ Bootstrap JS (required for hamburger) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
